@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 760921e0f57720043acbff8292efd957, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerCamera: {fileID: 0}
   paintBlob: {fileID: 4370093514599088196, guid: 8808c99a2b8b3684d802115b8af8ed9a, type: 3}
   Plane: {fileID: 0}
   blobSize: 0.3
