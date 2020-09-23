@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space)){
             rb.AddForce(transform.up * jumpForce);
-            PhotonNetwork.Instantiate("Cube", transform.position, transform.rotation, 0);
+            //PhotonNetwork.Instantiate("Cube", transform.position, transform.rotation, 0);
         }
     }
 

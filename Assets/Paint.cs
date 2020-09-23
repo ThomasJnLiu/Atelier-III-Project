@@ -7,7 +7,9 @@ public class Paint : MonoBehaviour
     public Camera playerCamera;
     public GameObject paintBlob;
     public GameObject Plane;
-    public float blobSize;
+    
+    public float paintDistance = 5.0f;
+    Vector3 blobExtrude;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,10 +24,43 @@ public class Paint : MonoBehaviour
         {
             var Ray = playerCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            if(Physics.Raycast(Ray, out hit))
+            if(Physics.Raycast(Ray, out hit,paintDistance))
             {
-                var go = PhotonNetwork.Instantiate("paintBlob", hit.point + Vector3.up * 0.1f, Quaternion.identity);
-                go.transform.localScale = Vector3.one * blobSize;
+                blobExtrude = Vector3.up* 0.1f;
+
+                if (hit.transform.gameObject.tag == "wall_north")
+                {
+                    blobExtrude = Vector3.forward * 0.1f;
+                }
+                else if (hit.transform.gameObject.tag == "wall_south")
+                {
+                    blobExtrude = Vector3.back * 0.1f;
+                }
+                else if (hit.transform.gameObject.tag == "wall_east")
+                {
+                    blobExtrude = Vector3.right * 0.1f;
+                }
+                else if (hit.transform.gameObject.tag == "wall_west")
+                {
+                    blobExtrude = Vector3.left * 0.1f;
+                }
+                else if (hit.transform.gameObject.tag == "floor")
+                {
+                    blobExtrude = Vector3.up * 0.1f;
+                }
+                else
+                {
+                    blobExtrude = new Vector3(0, 0, 0);
+                }
+                if (hit.point != null)
+                {
+                    var go = PhotonNetwork.Instantiate("paintBlob", hit.point + blobExtrude, hit.transform.rotation);
+                    
+                }
+                
+
+
+                
             }
         }
     }

@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - floor
+  - wall_north
+  - wall_south
+  - wall_east
+  - wall_west
   layers:
   - Default
   - TransparentFX

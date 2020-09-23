@@ -304,4 +304,4 @@ MonoBehaviour:
   playerCamera: {fileID: 0}
   paintBlob: {fileID: 4370093514599088196, guid: 8808c99a2b8b3684d802115b8af8ed9a, type: 3}
   Plane: {fileID: 0}
-  blobSize: 0.3
+  paintDistance: 5
