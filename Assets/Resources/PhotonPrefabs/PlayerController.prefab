@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 3632580435078738269}
   - component: {fileID: 1687304187159138248}
   - component: {fileID: 3774163466971841212}
+  - component: {fileID: 4380820098062031558}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -288,3 +289,18 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &4380820098062031558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6556386135081858617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 760921e0f57720043acbff8292efd957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  paintBlob: {fileID: 4370093514599088196, guid: 8808c99a2b8b3684d802115b8af8ed9a, type: 3}
+  Plane: {fileID: 0}
+  blobSize: 0.3
