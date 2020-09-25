@@ -2338,6 +2338,7 @@ namespace Photon.Pun
                 }
 
                 throw new Exception(string.Format("AllocateViewID() failed. User {0} is out of viewIDs. It seems all available are in use.", ownerId));
+                
             }
         }
 

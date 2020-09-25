@@ -9,6 +9,7 @@ TagManager:
   - wall_south
   - wall_east
   - wall_west
+  - blob
   layers:
   - Default
   - TransparentFX

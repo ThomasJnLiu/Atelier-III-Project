@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 719021062287032694}
   m_Layer: 0
   m_Name: paintBlob
-  m_TagString: Untagged
+  m_TagString: blob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,3 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blobSize: 0.05
+  destroyBlob: 0
+  blobLifetime: 0
+  photonView: {fileID: 0}

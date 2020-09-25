@@ -7,19 +7,39 @@ public class Paint : MonoBehaviour
     public Camera playerCamera;
     public GameObject paintBlob;
     public GameObject Plane;
-    
+    public PhotonView pv;
+    List<GameObject> goList;
     public float paintDistance = 5.0f;
     Vector3 blobExtrude;
     // Start is called before the first frame update
     void Start()
     {
-        playerCamera= this.GetComponentInChildren<Camera>();
+        goList = new List<GameObject>();
+        playerCamera = this.GetComponentInChildren<Camera>();
         Plane = GameObject.Find("Plane");
+        pv = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKey(KeyCode.X))
+        {
+            PhotonNetwork.Destroy(goList[goList.Count - 1].gameObject);
+            goList.RemoveAt(goList.Count - 1);
+            Debug.Log(goList.Count);
+            foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
+            {
+
+                if (gameObj.name == pv.Owner.ToString())
+                {
+
+
+                    
+
+                }
+            }
+        }
         if (Input.GetMouseButton(0))
         {
             var Ray = playerCamera.ScreenPointToRay(Input.mousePosition);
@@ -55,12 +75,14 @@ public class Paint : MonoBehaviour
                 if (hit.point != null)
                 {
                     var go = PhotonNetwork.Instantiate("paintBlob", hit.point + blobExtrude, hit.transform.rotation);
+                    goList.Add(go);
+                    //go.transform.localScale = (Vector3.one /2) / (hit.distance*4);
                     
+
                 }
                 
 
 
-                
             }
         }
     }
