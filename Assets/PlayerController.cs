@@ -26,7 +26,11 @@ public class PlayerController : MonoBehaviour
         if(!PV.IsMine){
             Destroy(GetComponentInChildren<Camera>().gameObject);
             Destroy(rb);
+        }else{
+            gameObject.tag = "Player";
         }
+        
+
     }
 
     // Update is called once per frame
