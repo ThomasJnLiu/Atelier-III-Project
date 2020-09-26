@@ -23,6 +23,10 @@ public class Paint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // check if player belongs to client
+        if(!pv.IsMine){
+            return;
+        }
         if (Input.GetKey(KeyCode.X) && goList.Count > 0)
         {
             PhotonNetwork.Destroy(goList[goList.Count - 1].gameObject);
@@ -38,12 +42,10 @@ public class Paint : MonoBehaviour
                 
             }
             goList.Clear();
-
-
         }
         
         if (Input.GetMouseButton(0))
-        {
+        {   
             var Ray = playerCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if(Physics.Raycast(Ray, out hit,paintDistance))
@@ -79,12 +81,7 @@ public class Paint : MonoBehaviour
                     var go = PhotonNetwork.Instantiate("paintBlob", hit.point + blobExtrude, hit.transform.rotation);
                     goList.Add(go);
                     //go.transform.localScale = (Vector3.one /2) / (hit.distance*4);
-
-
                 }
-                
-
-
             }
         }
     }
