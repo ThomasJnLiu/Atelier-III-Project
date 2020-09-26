@@ -23,23 +23,25 @@ public class Paint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKey(KeyCode.X) && goList.Count > 0)
         {
             PhotonNetwork.Destroy(goList[goList.Count - 1].gameObject);
             goList.RemoveAt(goList.Count - 1);
             Debug.Log(goList.Count);
-            foreach (var gameObj in FindObjectsOfType(typeof(GameObject)) as GameObject[])
-            {
-
-                if (gameObj.name == pv.Owner.ToString())
-                {
-
-
-                    
-
-                }
-            }
+            
         }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            foreach (GameObject blob in goList)
+            {
+                PhotonNetwork.Destroy(blob);
+                
+            }
+            goList.Clear();
+
+
+        }
+        
         if (Input.GetMouseButton(0))
         {
             var Ray = playerCamera.ScreenPointToRay(Input.mousePosition);
@@ -72,12 +74,12 @@ public class Paint : MonoBehaviour
                 {
                     blobExtrude = new Vector3(0, 0, 0);
                 }
-                if (hit.point != null)
+                if (hit.point != null &&goList.Count>=0)
                 {
                     var go = PhotonNetwork.Instantiate("paintBlob", hit.point + blobExtrude, hit.transform.rotation);
                     goList.Add(go);
                     //go.transform.localScale = (Vector3.one /2) / (hit.distance*4);
-                    
+
 
                 }
                 
