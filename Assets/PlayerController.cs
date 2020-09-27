@@ -28,6 +28,9 @@ public class PlayerController : MonoBehaviour
             Destroy(rb);
         }else{
             gameObject.tag = "Player";
+            // Lock cursor
+            Cursor.lockState = CursorLockMode.Locked;
+
         }
         
 
@@ -39,7 +42,11 @@ public class PlayerController : MonoBehaviour
         if(!PV.IsMine){
             return;
         }
-        Look();
+
+        // Only Look with cursor if cursor is locked
+        if(Cursor.lockState == CursorLockMode.Locked){
+            Look();
+        }
 
         Vector3 moveDir = new Vector3 (Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
@@ -49,6 +56,18 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(transform.up * jumpForce);
             //PhotonNetwork.Instantiate("Cube", transform.position, transform.rotation, 0);
         }
+
+
+        // Toggle cursor lock 
+        if(Input.GetKeyDown(KeyCode.Escape)){
+            if(Cursor.lockState == CursorLockMode.Locked){
+            Cursor.lockState = CursorLockMode.None;
+            }else{
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+            
+        }
+        
     }
 
     void Look(){
