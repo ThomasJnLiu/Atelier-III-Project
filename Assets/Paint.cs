@@ -12,7 +12,7 @@ public class Paint : MonoBehaviour
     public float paintDistance = 5.0f;
     Vector3 blobExtrude;
     public GameObject paintParticles;
-    
+    public GameObject sprayPoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -51,7 +51,6 @@ public class Paint : MonoBehaviour
         
         if (Input.GetMouseButton(0) && goList.Count < 1980)
         {
-            //paintParticles.SetActive(true);
             var Ray = playerCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if(Physics.Raycast(Ray, out hit,paintDistance))
@@ -90,9 +89,19 @@ public class Paint : MonoBehaviour
                 }
             }
         }
-        else
+        if (Input.GetMouseButtonDown(0) && goList.Count < 1980)
         {
-            paintParticles.SetActive(false);
+            paintParticles = PhotonNetwork.Instantiate("paintParticles", sprayPoint.transform.position, transform.rotation);
+            paintParticles.transform.SetParent(this.transform);
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            //paintParticles.SetActive(false);
+            if (paintParticles != null)
+            {
+                PhotonNetwork.Destroy(paintParticles);
+            }
+            
         }
     }
 }
