@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ae7ff49f4fb1e8408d3b3ae67beacf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blobSize: 0.05
+  blobSize: 0.025
   destroyBlob: 0
   blobLifetime: 0
   photonView: {fileID: 0}

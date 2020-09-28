@@ -30,10 +30,7 @@ public class Blob : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Destroy(gameObject);
-        }
+        
         
         //photonView.RPC("RpcMethodName", photonView.Owner);
         

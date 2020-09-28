@@ -8,9 +8,11 @@ public class Paint : MonoBehaviour
     public GameObject paintBlob;
     public GameObject Plane;
     public PhotonView pv;
-    List<GameObject> goList;
+    public List<GameObject> goList;
     public float paintDistance = 5.0f;
     Vector3 blobExtrude;
+    public GameObject paintParticles;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -27,25 +29,29 @@ public class Paint : MonoBehaviour
         if(!pv.IsMine){
             return;
         }
-        if (Input.GetKey(KeyCode.X) && goList.Count > 0)
+        if (Input.GetKey(KeyCode.X) && goList.Count > 0 && pv.IsMine)
         {
             PhotonNetwork.Destroy(goList[goList.Count - 1].gameObject);
             goList.RemoveAt(goList.Count - 1);
-            Debug.Log(goList.Count);
-            
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Z) && goList.Count > 0 &&pv.IsMine)
         {
-            foreach (GameObject blob in goList)
-            {
-                PhotonNetwork.Destroy(blob);
-                
-            }
-            goList.Clear();
+            //for (int i = goList.Count - 1; i >= 0; i--)
+            //{
+            PhotonNetwork.Destroy(goList[goList.Count - 1].gameObject);
+            goList.RemoveAt(goList.Count - 1);
+            //}
+            //foreach (GameObject blob in goList)
+            //{
+            //    PhotonNetwork.Destroy(blob);
+
+            //}
+            //goList.Clear();
         }
         
-        if (Input.GetMouseButton(0))
-        {   
+        if (Input.GetMouseButton(0) && goList.Count < 1980)
+        {
+            //paintParticles.SetActive(true);
             var Ray = playerCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if(Physics.Raycast(Ray, out hit,paintDistance))
@@ -83,6 +89,10 @@ public class Paint : MonoBehaviour
                     //go.transform.localScale = (Vector3.one /2) / (hit.distance*4);
                 }
             }
+        }
+        else
+        {
+            paintParticles.SetActive(false);
         }
     }
 }
