@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Photon.Pun;
 public class Paint : MonoBehaviour
 {
@@ -13,6 +14,11 @@ public class Paint : MonoBehaviour
     Vector3 blobExtrude;
     public GameObject paintParticles;
     public GameObject sprayPoint;
+
+    public Image fill;
+    public Image outline;
+
+    public GameObject undoText;
     // Start is called before the first frame update
     void Start()
     {
@@ -89,13 +95,19 @@ public class Paint : MonoBehaviour
                 }
             }
         }
-        if (Input.GetMouseButtonDown(0) && goList.Count < 1980)
+        if (Input.GetMouseButtonDown(0))
         {
-            paintParticles = PhotonNetwork.Instantiate("paintParticles", sprayPoint.transform.position, transform.rotation);
-            paintParticles.transform.SetParent(this.transform);
+            fill.color= new Color32(0, 127, 225, 255);
+            outline.color = new Color32(0, 0, 0, 255);
+            if (goList.Count < 1980){
+                paintParticles = PhotonNetwork.Instantiate("paintParticles", sprayPoint.transform.position, transform.rotation);
+                paintParticles.SetActive(false);
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
+            fill.color = new Color32(0, 127, 225, 50);
+            outline.color = new Color32(0, 0, 0, 50);
             //paintParticles.SetActive(false);
             if (paintParticles != null)
             {
@@ -103,5 +115,13 @@ public class Paint : MonoBehaviour
             }
             
         }
-    }
+        if (goList.Count > 1500)
+        {
+            undoText.SetActive(true);
+        }
+        else
+        {
+            undoText.SetActive(false);
+        }
+        }
 }
