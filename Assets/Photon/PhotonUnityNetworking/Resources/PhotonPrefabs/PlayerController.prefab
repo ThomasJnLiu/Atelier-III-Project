@@ -772,14 +772,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
-  paintBlob: {fileID: 4370093514599088196, guid: 8808c99a2b8b3684d802115b8af8ed9a, type: 3}
   Plane: {fileID: 0}
   pv: {fileID: 0}
   goList: []
   paintDistance: 5
   paintParticles: {fileID: 6054595466878123410, guid: be580ea6153eb294eb183680e3de01af, type: 3}
   sprayPoint: {fileID: 4160169371905582965}
-  blobColor: {fileID: 2100000, guid: 3f02909c466ec594b9a258669038403e, type: 2}
   selectedColor: 0
   fill: {fileID: 4517895510515623312}
   outline: {fileID: 6485018155886008671}

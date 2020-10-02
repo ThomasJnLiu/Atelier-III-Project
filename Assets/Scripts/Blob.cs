@@ -6,8 +6,6 @@ using Photon.Pun;
 public class Blob : MonoBehaviour
 {
     public float blobSize=0.05f;
-    public bool destroyBlob = false;
-    public float blobLifetime=0.0f;
 
     public PhotonView photonView;
     
@@ -20,11 +18,7 @@ public class Blob : MonoBehaviour
 
         
 
-        if (destroyBlob)
-        {
-            Destroy(gameObject, blobLifetime);
-            
-        }
+        
     }
 
     // Update is called once per frame

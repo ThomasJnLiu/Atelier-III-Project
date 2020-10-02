@@ -6,7 +6,7 @@ using Photon.Pun;
 public class Paint : MonoBehaviour
 {
     public Camera playerCamera;
-    public GameObject paintBlob;
+    
     public GameObject Plane;
     public PhotonView pv;
     public List<GameObject> goList;
@@ -15,6 +15,7 @@ public class Paint : MonoBehaviour
     public GameObject paintParticles;
     public GameObject sprayPoint;
 
+    public int selectedColor;
     public Image fill;
     public Image outline;
 
@@ -31,8 +32,25 @@ public class Paint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && pv.IsMine)
+        {
+            selectedColor = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2) && pv.IsMine)
+        {
+            selectedColor = 1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3) && pv.IsMine)
+        {
+            selectedColor = 2;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4) && pv.IsMine)
+        {
+            selectedColor = 3;
+
+        }
         // check if player belongs to client
-        if(!pv.IsMine){
+        if (!pv.IsMine){
             return;
         }
         if (Input.GetKey(KeyCode.X) && goList.Count > 0 && pv.IsMine)
@@ -89,8 +107,28 @@ public class Paint : MonoBehaviour
                 }
                 if (hit.point != null &&goList.Count>=0)
                 {
-                    var go = PhotonNetwork.Instantiate("paintBlob", hit.point + blobExtrude, hit.transform.rotation);
-                    goList.Add(go);
+                    if (selectedColor == 0)
+                    {
+                        var go = PhotonNetwork.Instantiate("blueBlob", hit.point + blobExtrude, hit.transform.rotation);
+                        goList.Add(go);
+                    }
+                    else if (selectedColor == 1)
+                    {
+                        var go = PhotonNetwork.Instantiate("redBlob", hit.point + blobExtrude, hit.transform.rotation);
+                        goList.Add(go);
+                    }
+                    else if (selectedColor == 2)
+                    {
+                        var go = PhotonNetwork.Instantiate("yellowBlob", hit.point + blobExtrude, hit.transform.rotation);
+                        goList.Add(go);
+                    }
+                    else if (selectedColor == 3)
+                    {
+                        var go = PhotonNetwork.Instantiate("greenBlob", hit.point + blobExtrude, hit.transform.rotation);
+                        goList.Add(go);
+                    }
+
+
                     //go.transform.localScale = (Vector3.one /2) / (hit.distance*4);
                 }
             }
@@ -123,5 +161,7 @@ public class Paint : MonoBehaviour
         {
             undoText.SetActive(false);
         }
+
         }
+
 }
