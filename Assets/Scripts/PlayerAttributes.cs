@@ -12,18 +12,24 @@ public class PlayerAttributes : MonoBehaviour
 
     public Material[] sprayColor;
 
+    public ParticleSystem paintParticle;
+
     private PhotonView pv;
     // Start is called before the first frame update
 
     void Start()
     {
 
+       
+        
         
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
             sprayModel.SetActive(false);
         }
+        ParticleSystem.MainModule ma = paintParticle.main;
+        ma.startColor = sprayColor[0].color;
     }
 
     // Update is called once per frame
@@ -53,20 +59,28 @@ public class PlayerAttributes : MonoBehaviour
     public void red()
     {
         sprayModel.GetComponent<Renderer>().materials[1].color = sprayColor[0].color;
+        ParticleSystem.MainModule ma = paintParticle.main;
+        ma.startColor = sprayColor[0].color;
     }
     [PunRPC]
     public void blue()
     {
         sprayModel.GetComponent<Renderer>().materials[1].color = sprayColor[1].color;
+        ParticleSystem.MainModule ma = paintParticle.main;
+        ma.startColor = sprayColor[1].color;
     }
     [PunRPC]
     public void yellow()
     {
         sprayModel.GetComponent<Renderer>().materials[1].color = sprayColor[2].color;
+        ParticleSystem.MainModule ma = paintParticle.main;
+        ma.startColor = sprayColor[2].color;
     }
     [PunRPC]
     public void green()
     {
         sprayModel.GetComponent<Renderer>().materials[1].color = sprayColor[3].color;
+        ParticleSystem.MainModule ma = paintParticle.main;
+        ma.startColor = sprayColor[3].color;
     }
 }

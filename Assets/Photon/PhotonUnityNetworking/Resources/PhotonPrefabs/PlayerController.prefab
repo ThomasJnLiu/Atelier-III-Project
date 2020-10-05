@@ -125,6 +125,7 @@ MonoBehaviour:
   sprayColor:
   - {fileID: 2100000, guid: e58854aff52bfcb4bac9288bcfb67da6, type: 2}
   - {fileID: 2100000, guid: 48f02aed085b4484686b79d526c43a8d, type: 2}
+  paintParticle: {fileID: 0}
 --- !u!1 &1977794755672482758
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,7 +5413,7 @@ GameObject:
   - component: {fileID: 3774163466971841212}
   - component: {fileID: 4380820098062031558}
   - component: {fileID: 3264879882750062033}
-  - component: {fileID: 2238768457042302922}
+  - component: {fileID: 4747956216587395702}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -5615,7 +5616,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 48f02aed085b4484686b79d526c43a8d, type: 2}
   - {fileID: 2100000, guid: 4f51c0f3510788f4aad74da7f80c8db7, type: 2}
   - {fileID: 2100000, guid: 47ff2b15d407bb74c861c0bd9e98224d, type: 2}
---- !u!114 &2238768457042302922
+  paintParticle: {fileID: 8259301637138328101}
+--- !u!114 &4747956216587395702
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5624,7 +5626,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6556386135081858617}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57eb639c51af6264c84f20a7cf53ecdd, type: 3}
+  m_Script: {fileID: 11500000, guid: 41dde2f65846ec54989b09911045d068, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   paintParticles: {fileID: 5902867810110124005}

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
-public class PaintParticleController : MonoBehaviour
+public class paintParticleController : MonoBehaviour
 {
     private PhotonView pv;
     public GameObject paintParticles;
@@ -10,8 +10,7 @@ public class PaintParticleController : MonoBehaviour
     void Start()
     {
         pv = GetComponent<PhotonView>();
-        
-        
+        pv.RPC("hideParticles", RpcTarget.AllBuffered);
     }
 
     // Update is called once per frame
