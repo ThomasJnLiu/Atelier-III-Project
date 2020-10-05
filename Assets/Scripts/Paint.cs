@@ -138,18 +138,18 @@ public class Paint : MonoBehaviour
             fill.color= new Color32(0, 127, 225, 255);
             outline.color = new Color32(0, 0, 0, 255);
             if (goList.Count < 1980){
-                paintParticles = PhotonNetwork.Instantiate("paintParticles", sprayPoint.transform.position, transform.rotation);
-                paintParticles.SetActive(false);
+                //paintParticles = PhotonNetwork.Instantiate("paintParticles", sprayPoint.transform.position, sprayPoint.transform.rotation);
+                //paintParticles.transform.parent = sprayPoint.transform;
+                //paintParticles.SetActive(false);
             }
         }
         if (Input.GetMouseButtonUp(0))
         {
             fill.color = new Color32(0, 127, 225, 50);
             outline.color = new Color32(0, 0, 0, 50);
-            //paintParticles.SetActive(false);
             if (paintParticles != null)
             {
-                PhotonNetwork.Destroy(paintParticles);
+                //PhotonNetwork.Destroy(paintParticles);
             }
             
         }
