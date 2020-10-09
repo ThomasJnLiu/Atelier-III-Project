@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
 
     PhotonView PV;
+
+    public Animator anim;
+
     void Awake(){
         rb = GetComponent<Rigidbody>();
         PV = GetComponent<PhotonView>();
@@ -84,5 +87,25 @@ public class PlayerController : MonoBehaviour
             return;
         }
         rb.MovePosition(rb.position + transform.TransformDirection(moveAmount) * Time.fixedDeltaTime);
+        
+            if (Input.GetAxisRaw("Horizontal")!=0 || Input.GetAxisRaw("Vertical")!=0) 
+            {
+                anim.SetBool("idle", false);
+                
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                anim.SetFloat("movementSpeed",3);
+            }
+            else
+            {
+                anim.SetFloat("movementSpeed", 1);
+            }
+            }
+            else
+            {
+                anim.SetBool("idle", true);
+            }
+            
+        
     }
 }
