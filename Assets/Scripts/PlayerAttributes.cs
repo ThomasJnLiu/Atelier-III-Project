@@ -20,9 +20,6 @@ public class PlayerAttributes : MonoBehaviour
     void Start()
     {
 
-       
-        
-        
         pv = GetComponent<PhotonView>();
         if (pv.IsMine)
         {
@@ -61,6 +58,7 @@ public class PlayerAttributes : MonoBehaviour
         sprayModel.GetComponent<Renderer>().materials[1].color = sprayColor[0].color;
         ParticleSystem.MainModule ma = paintParticle.main;
         ma.startColor = sprayColor[0].color;
+        selectedColor = 0;
     }
     [PunRPC]
     public void blue()
@@ -68,6 +66,7 @@ public class PlayerAttributes : MonoBehaviour
         sprayModel.GetComponent<Renderer>().materials[1].color = sprayColor[1].color;
         ParticleSystem.MainModule ma = paintParticle.main;
         ma.startColor = sprayColor[1].color;
+        selectedColor = 1;
     }
     [PunRPC]
     public void yellow()
@@ -75,6 +74,7 @@ public class PlayerAttributes : MonoBehaviour
         sprayModel.GetComponent<Renderer>().materials[1].color = sprayColor[2].color;
         ParticleSystem.MainModule ma = paintParticle.main;
         ma.startColor = sprayColor[2].color;
+        selectedColor = 2;
     }
     [PunRPC]
     public void green()
@@ -82,5 +82,6 @@ public class PlayerAttributes : MonoBehaviour
         sprayModel.GetComponent<Renderer>().materials[1].color = sprayColor[3].color;
         ParticleSystem.MainModule ma = paintParticle.main;
         ma.startColor = sprayColor[3].color;
+        selectedColor = 3;
     }
 }

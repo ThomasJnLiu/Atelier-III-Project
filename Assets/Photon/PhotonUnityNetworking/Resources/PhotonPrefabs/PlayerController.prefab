@@ -242,7 +242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1977794755672482758}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6556386133988628768}
@@ -611,10 +611,10 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -369670448440565510, guid: bb25b5a90e271b44badaf3bd3446c452, type: 3}
-  - {fileID: 4181156141556559903, guid: bb25b5a90e271b44badaf3bd3446c452, type: 3}
-  - {fileID: -6949799667166120619, guid: bb25b5a90e271b44badaf3bd3446c452, type: 3}
-  - {fileID: 1280446133571650962, guid: bb25b5a90e271b44badaf3bd3446c452, type: 3}
+  - {fileID: 2100000, guid: 7705ad140aa9cb7469b7406c3e059503, type: 2}
+  - {fileID: 2100000, guid: a967207c3f70eea45a4e72e1a1b4331d, type: 2}
+  - {fileID: 2100000, guid: e6575c3c497da374cb1779a8cb72ede6, type: 2}
+  - {fileID: 2100000, guid: 162460b4ac8add1459c60ef388064a51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5846,10 +5846,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
+  m_Radius: 0.65379417
+  m_Height: 2.126071
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.10337448, y: 0.06303549, z: 0.0072467327}
 --- !u!114 &4979161101720161468
 MonoBehaviour:
   m_ObjectHideFlags: 0

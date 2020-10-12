@@ -32,23 +32,6 @@ public class Paint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && pv.IsMine)
-        {
-            selectedColor = 0;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && pv.IsMine)
-        {
-            selectedColor = 1;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && pv.IsMine)
-        {
-            selectedColor = 2;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4) && pv.IsMine)
-        {
-            selectedColor = 3;
-
-        }
         // check if player belongs to client
         if (!pv.IsMine){
             return;
@@ -107,22 +90,23 @@ public class Paint : MonoBehaviour
                 }
                 if (hit.point != null &&goList.Count>=0)
                 {
-                    if (selectedColor == 0)
+                    int blobColor = GetComponent<PlayerAttributes>().selectedColor;
+                    if (blobColor == 0)
                     {
                         var go = PhotonNetwork.Instantiate("blueBlob", hit.point + blobExtrude, hit.transform.rotation);
                         goList.Add(go);
                     }
-                    else if (selectedColor == 1)
+                    else if (blobColor == 1)
                     {
                         var go = PhotonNetwork.Instantiate("redBlob", hit.point + blobExtrude, hit.transform.rotation);
                         goList.Add(go);
                     }
-                    else if (selectedColor == 2)
+                    else if (blobColor == 2)
                     {
                         var go = PhotonNetwork.Instantiate("yellowBlob", hit.point + blobExtrude, hit.transform.rotation);
                         goList.Add(go);
                     }
-                    else if (selectedColor == 3)
+                    else if (blobColor == 3)
                     {
                         var go = PhotonNetwork.Instantiate("greenBlob", hit.point + blobExtrude, hit.transform.rotation);
                         goList.Add(go);
@@ -145,8 +129,8 @@ public class Paint : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            fill.color = new Color32(0, 127, 225, 50);
-            outline.color = new Color32(0, 0, 0, 50);
+            fill.color = new Color32(0, 127, 225, 90);
+            outline.color = new Color32(0, 0, 0, 90);
             if (paintParticles != null)
             {
                 //PhotonNetwork.Destroy(paintParticles);
