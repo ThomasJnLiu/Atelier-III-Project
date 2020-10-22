@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
 
     [SerializeField] float verticalLookRotation;
-    bool grounded;
+    [SerializeField] bool grounded = true;
 
     Vector3 smoothMoveVelocity;
     Vector3 moveAmount;
@@ -31,11 +31,7 @@ public class PlayerController : MonoBehaviour
             Destroy(rb);
         }else{
             gameObject.tag = "Player";
-            // Lock cursor
-            Cursor.lockState = CursorLockMode.Locked;
-
         }
-        
 
     }
 
@@ -45,7 +41,6 @@ public class PlayerController : MonoBehaviour
         if(!PV.IsMine){
             return;
         }
-
         // Only Look with cursor if cursor is locked
         if(Cursor.lockState == CursorLockMode.Locked){
             Look();
@@ -55,7 +50,7 @@ public class PlayerController : MonoBehaviour
 
         moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed), ref smoothMoveVelocity, smoothTime);
 
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space) && grounded){
             rb.AddForce(transform.up * jumpForce);
             //PhotonNetwork.Instantiate("Cube", transform.position, transform.rotation, 0);
         }
@@ -70,7 +65,6 @@ public class PlayerController : MonoBehaviour
             }
             
         }
-        
     }
 
     void Look(){
@@ -107,5 +101,9 @@ public class PlayerController : MonoBehaviour
             }
             
         
+    }
+
+    public void SetGroundedState(bool _grounded){
+        grounded = _grounded;
     }
 }

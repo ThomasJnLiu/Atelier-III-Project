@@ -115,6 +115,8 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void StartGame(){
         PhotonNetwork.LoadLevel(1);
+        // Lock cursor
+        Cursor.lockState = CursorLockMode.Locked;
     }
     
 }
