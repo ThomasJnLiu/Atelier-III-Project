@@ -369,7 +369,7 @@ GameObject:
   - component: {fileID: 1687304187159138248}
   - component: {fileID: 3774163466971841212}
   - component: {fileID: 4380820098062031558}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -498,6 +498,8 @@ MonoBehaviour:
   jumpForce: 300
   smoothTime: 0.15
   verticalLookRotation: 0
+  grounded: 1
+  anim: {fileID: 0}
 --- !u!54 &1687304187159138248
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -542,15 +544,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 0}
-  paintBlob: {fileID: 4370093514599088196, guid: 8808c99a2b8b3684d802115b8af8ed9a, type: 3}
   Plane: {fileID: 0}
   pv: {fileID: 0}
   goList: []
   paintDistance: 5
   paintParticles: {fileID: 6054595466878123410, guid: be580ea6153eb294eb183680e3de01af, type: 3}
   sprayPoint: {fileID: 4160169371905582965}
+  selectedColor: 0
   fill: {fileID: 4517895510515623312}
   outline: {fileID: 6485018155886008671}
+  undoText: {fileID: 0}
 --- !u!1 &6738108985776755343
 GameObject:
   m_ObjectHideFlags: 0

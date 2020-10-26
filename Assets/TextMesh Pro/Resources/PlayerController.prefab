@@ -5762,7 +5762,7 @@ GameObject:
   - component: {fileID: 4747956216587395702}
   - component: {fileID: 2604917759865210601}
   - component: {fileID: 5641912240000472661}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlayerController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5893,6 +5893,7 @@ MonoBehaviour:
   jumpForce: 300
   smoothTime: 0.15
   verticalLookRotation: 0
+  grounded: 1
   anim: {fileID: 2604917759865210601}
 --- !u!54 &1687304187159138248
 Rigidbody:
