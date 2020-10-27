@@ -95,8 +95,9 @@ public class Paint : MonoBehaviour
         {
           blobExtrude = new Vector3(0, 0, 0);
         }
-        if (hit.point != null && goList.Count >= 0)
+        if (hit.point != null && goList.Count >= 0 && hit.transform.gameObject.tag!="Untagged")
         {
+
           int blobColor = GetComponent<PlayerAttributes>().selectedColor;
           if (blobColor == 0)
           {
