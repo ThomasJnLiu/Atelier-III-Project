@@ -22,22 +22,28 @@ public class Paint : MonoBehaviour
   public GameObject undoText;
   Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
 
-  // Start is called before the first frame update
-  void Start()
-  {
-    goList = new List<GameObject>();
-    playerCamera = this.GetComponentInChildren<Camera>();
-    Plane = GameObject.Find("Plane");
-    pv = GetComponent<PhotonView>();
-  }
+    // Start is called before the first frame update
+    void Start()
+    {
+        goList = new List<GameObject>();
+
+        Plane = GameObject.Find("Plane");
+        pv = GetComponent<PhotonView>();
+        if (pv.IsMine)
+        {
+            playerCamera = this.GetComponentInChildren<Camera>();
+        }
+    }
 
   // Update is called once per frame
   void Update()
   {
-    // Draw ray from center of screen for debugging
-    Ray playerRay = playerCamera.ScreenPointToRay(screenCenter);
-    Debug.DrawRay(playerRay.origin, playerRay.direction * 10, Color.red);
-
+        // Draw ray from center of screen for debugging
+        if (pv.IsMine)
+        {
+            Ray playerRay = playerCamera.ScreenPointToRay(screenCenter);
+            Debug.DrawRay(playerRay.origin, playerRay.direction * 10, Color.red);
+        }
     // check if player belongs to client
     if (!pv.IsMine)
     {
@@ -63,10 +69,12 @@ public class Paint : MonoBehaviour
       //goList.Clear();
     }
 
-    if (Input.GetMouseButton(0) && goList.Count < 1980)
+    if (Input.GetMouseButton(0) && goList.Count < 1980 &&pv.IsMine)
     {
+       
       var Ray = playerCamera.ScreenPointToRay(screenCenter);
       RaycastHit hit;
+
       if (Physics.Raycast(Ray, out hit, paintDistance))
       {
         blobExtrude = Vector3.up * 0.1f;
@@ -125,27 +133,17 @@ public class Paint : MonoBehaviour
         }
       }
     }
-    if (Input.GetMouseButtonDown(0))
-    {
-      fill.color = new Color32(0, 127, 225, 255);
-      outline.color = new Color32(0, 0, 0, 255);
-      if (goList.Count < 1980)
-      {
-        //paintParticles = PhotonNetwork.Instantiate("paintParticles", sprayPoint.transform.position, sprayPoint.transform.rotation);
-        //paintParticles.transform.parent = sprayPoint.transform;
-        //paintParticles.SetActive(false);
-      }
-    }
-    if (Input.GetMouseButtonUp(0))
-    {
-      fill.color = new Color32(0, 127, 225, 90);
-      outline.color = new Color32(0, 0, 0, 90);
-      if (paintParticles != null)
-      {
-        //PhotonNetwork.Destroy(paintParticles);
-      }
+    //if (Input.GetMouseButtonDown(0))
+    //{
+    //  fill.color = new Color32(0, 127, 225, 255);
+    //  outline.color = new Color32(0, 0, 0, 255);
+    //}
+    //if (Input.GetMouseButtonUp(0))
+    //{
+    //  fill.color = new Color32(0, 127, 225, 190);
+    //  outline.color = new Color32(0, 0, 0, 190);
 
-    }
+    //}
     if (goList.Count > 1500)
     {
       undoText.SetActive(true);
