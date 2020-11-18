@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
   [SerializeField] float verticalLookRotation;
   [SerializeField] bool grounded = true;
+  [SerializeField] Canvas nameTag;
 
   Vector3 smoothMoveVelocity;
   Vector3 moveAmount;
@@ -31,9 +32,13 @@ public class PlayerController : MonoBehaviour
     {
       Destroy(GetComponentInChildren<Camera>().gameObject);
       Destroy(rb);
+ 
+
     }
     else
     {
+      // Destroy name tag canvas
+      Destroy(nameTag);
       gameObject.tag = "Player";
     }
 
