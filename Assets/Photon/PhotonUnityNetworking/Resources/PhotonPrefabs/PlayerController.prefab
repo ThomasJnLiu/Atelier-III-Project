@@ -6904,7 +6904,7 @@ MonoBehaviour:
   smoothTime: 0.15
   verticalLookRotation: 0
   grounded: 1
-  nameTag: {fileID: 5536158778641091694}
+  nameTag: {fileID: 2895153966939013488}
   anim: {fileID: 2604917759865210601}
 --- !u!54 &1687304187159138248
 Rigidbody:

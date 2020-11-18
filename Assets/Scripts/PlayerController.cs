@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
   [SerializeField] float verticalLookRotation;
   [SerializeField] bool grounded = true;
-  [SerializeField] Canvas nameTag;
+  [SerializeField] GameObject nameTag;
 
   Vector3 smoothMoveVelocity;
   Vector3 moveAmount;
