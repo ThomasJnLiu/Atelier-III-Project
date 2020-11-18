@@ -20,6 +20,7 @@ public class PaintParticleController : MonoBehaviour
         
         if (Input.GetMouseButtonDown(0)&&pv.IsMine)
         {
+        
             pv.RPC("showParticles", RpcTarget.AllBuffered);
             paintParticles.SetActive(false);
         }
