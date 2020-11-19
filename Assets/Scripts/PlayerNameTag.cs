@@ -14,7 +14,7 @@ public class PlayerNameTag : MonoBehaviourPun
             return;
         }
 
-        //SetName();
+        SetName();
     }
 
     // Update is called once per frame
@@ -25,5 +25,6 @@ public class PlayerNameTag : MonoBehaviourPun
 
     private void SetName(){
         nameText.text = photonView.Owner.NickName;
+        Debug.Log(photonView.Owner.NickName);
     }
 }
