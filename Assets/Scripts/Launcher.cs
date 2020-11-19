@@ -22,15 +22,28 @@ public class Launcher : MonoBehaviourPunCallbacks
   [SerializeField] Transform playerListContent;
   [SerializeField] GameObject playerListItemPrefab;
   [SerializeField] GameObject startGameButton;
+  [SerializeField] TMP_InputField nameInputField;
 
   // Start is called before the first frame update
   void Start()
   {
+
+  }
+
+  public void ConnectToLobby(){
+    if (string.IsNullOrEmpty(nameInputField.text))
+    {
+      return;
+    }
+
+    PhotonNetwork.NickName = nameInputField.text;
+
+    MenuManager.Instance.OpenMenu("Loading");
+
     Debug.Log("Connecting to Master");
 
     PhotonNetwork.ConnectUsingSettings();
   }
-
   public override void OnConnectedToMaster()
   {
     Debug.Log("Connected to Master");
@@ -43,7 +56,7 @@ public class Launcher : MonoBehaviourPunCallbacks
   {
     MenuManager.Instance.OpenMenu("Title");
     Debug.Log("Joined Lobby");
-    PhotonNetwork.NickName = "Player " + Random.Range(0, 1000).ToString("0000");
+    // PhotonNetwork.NickName = "Player " + Random.Range(0, 1000).ToString("0000");
   }
 
   public void CreateRoom()
