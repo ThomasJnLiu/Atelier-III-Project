@@ -30,4 +30,8 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("instatiate player");
         PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "PlayerController"), Vector3.zero, Quaternion.identity);
     }
+
+    public void RespawnPlayer(){
+        transform.position = Vector3.zero;
+    }
 }

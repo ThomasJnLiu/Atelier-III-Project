@@ -126,4 +126,8 @@ public class PlayerController : MonoBehaviour
   {
     grounded = _grounded;
   }
+  
+  public void RespawnPlayer(){
+        transform.position = Vector3.zero;
+    }
 }
