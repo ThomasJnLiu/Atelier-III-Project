@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 {
   [SerializeField] GameObject cameraHolder;
   [SerializeField] float mouseSensitivity, sprintSpeed, walkSpeed, jumpForce, smoothTime;
-
+  public float speedBoost = 0;
   [SerializeField] float verticalLookRotation;
   [SerializeField] bool grounded = true;
   [SerializeField] GameObject nameTag;
@@ -60,12 +60,11 @@ public class PlayerController : MonoBehaviour
 
     Vector3 moveDir = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
 
-    moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * (Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed), ref smoothMoveVelocity, smoothTime);
+    moveAmount = Vector3.SmoothDamp(moveAmount, moveDir * ((Input.GetKey(KeyCode.LeftShift) ? sprintSpeed : walkSpeed)+speedBoost), ref smoothMoveVelocity, smoothTime);
 
     if (Input.GetKeyDown(KeyCode.Space) && grounded)
     {
       rb.AddForce(transform.up * jumpForce);
-      //PhotonNetwork.Instantiate("Cube", transform.position, transform.rotation, 0);
     }
 
 
@@ -129,5 +128,20 @@ public class PlayerController : MonoBehaviour
   
   public void RespawnPlayer(){
         transform.position = Vector3.zero;
+  }
+
+  public void SpeedPadBoost(){
+    // Prevent coroutine from being called multiple times
+    if(speedBoost == 0){
+      speedBoost = 10;
+      StartCoroutine("SpeedTimer");
+      Debug.Log("speeding up");
     }
+  }
+
+  public IEnumerator SpeedTimer(){
+    yield return new WaitForSeconds(5f);
+    speedBoost = 0;
+    Debug.Log("slowing down");
+  }
 }

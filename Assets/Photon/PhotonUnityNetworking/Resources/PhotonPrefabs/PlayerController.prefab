@@ -6902,6 +6902,7 @@ MonoBehaviour:
   walkSpeed: 3
   jumpForce: 300
   smoothTime: 0.15
+  speedBoost: 0
   verticalLookRotation: 0
   grounded: 1
   nameTag: {fileID: 2895153966939013488}
