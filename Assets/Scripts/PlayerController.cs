@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
   public void SpeedPadBoost(){
     // Prevent coroutine from being called multiple times
     if(speedBoost == 0){
-      speedBoost = 10;
+      speedBoost = 5;
       StartCoroutine("SpeedTimer");
       Debug.Log("speeding up");
     }
