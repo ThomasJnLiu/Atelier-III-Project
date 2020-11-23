@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using Photon.Realtime;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class Launcher : MonoBehaviourPunCallbacks
 {
@@ -29,6 +30,10 @@ public class Launcher : MonoBehaviourPunCallbacks
   {
 
   }
+    public void restartScene()
+    {
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 
   public void ConnectToLobby(){
     if (string.IsNullOrEmpty(nameInputField.text))
