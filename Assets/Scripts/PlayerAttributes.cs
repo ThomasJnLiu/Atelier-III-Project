@@ -80,7 +80,9 @@ public class PlayerAttributes : MonoBehaviour
         ma.startColor = sprayColor[0].color;
         selectedColor = 0;
 
-        fill.color = new Color32(0, 192, 255, 255);
+        if(fill != null){
+            fill.color = new Color32(0, 192, 255, 255);
+        }
     }
     [PunRPC]
     public void blue()
@@ -90,8 +92,9 @@ public class PlayerAttributes : MonoBehaviour
         ma.startColor = sprayColor[1].color;
         selectedColor = 1;
 
-        
-        fill.color = new Color32(230, 25, 25, 255);
+        if(fill != null){
+            fill.color = new Color32(230, 25, 25, 255);
+        }
     }
     [PunRPC]
     public void yellow()
@@ -100,7 +103,10 @@ public class PlayerAttributes : MonoBehaviour
         ParticleSystem.MainModule ma = paintParticle.main;
         ma.startColor = sprayColor[2].color;
         selectedColor = 2;
-        fill.color = new Color32(255, 235, 10, 255);
+
+        if(fill != null){
+            fill.color = new Color32(255, 235, 10, 255);
+        }
     }
     [PunRPC]
     public void green()
@@ -110,6 +116,9 @@ public class PlayerAttributes : MonoBehaviour
         ma.startColor = sprayColor[3].color;
         selectedColor = 3;
 
-        fill.color = new Color32(33, 226, 33, 255);
+        if(fill != null){
+            fill.color = new Color32(33, 226, 33, 255);
+        }
+
     }
 }
