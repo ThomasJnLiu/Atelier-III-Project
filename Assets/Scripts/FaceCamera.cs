@@ -5,9 +5,13 @@ using UnityEngine;
 public class FaceCamera : MonoBehaviour
 {
     [SerializeField] Transform mainCameraTransform;
+    [SerializeField] GameObject cameraObject;
     // Start is called before the first frame update
     void Start()
     {
+        if(transform.parent.tag == "mainPlayer"){
+            cameraObject.tag = "MainCamera";
+        }
         mainCameraTransform = Camera.main.transform;
     }
 

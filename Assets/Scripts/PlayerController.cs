@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
       // Destroy name tag canvas
       Destroy(nameTag);
-      gameObject.tag = "Player";
+      gameObject.tag = "mainPlayer";
     }
 
   }

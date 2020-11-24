@@ -6875,6 +6875,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCameraTransform: {fileID: 6556386133988628768}
+  cameraObject: {fileID: 6556386133988628775}
 --- !u!1 &6503171763738743586
 GameObject:
   m_ObjectHideFlags: 0
@@ -6918,7 +6919,7 @@ GameObject:
   - component: {fileID: 6556386133988628769}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

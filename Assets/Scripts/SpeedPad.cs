@@ -16,7 +16,7 @@ public class SpeedPad : MonoBehaviour
         
     }
     void OnCollisionEnter(Collision other){
-        if(other.gameObject.tag == "Player"){
+        if(other.gameObject.tag == "Player" || other.gameObject.tag == "mainPlayer"){
             PlayerController pm = other.gameObject.GetComponent<PlayerController>();
             pm.SpeedPadBoost();
         }
