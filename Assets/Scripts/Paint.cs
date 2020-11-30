@@ -38,12 +38,12 @@ public class Paint : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-        // Draw ray from center of screen for debugging
-        if (pv.IsMine)
-        {
-            Ray playerRay = playerCamera.ScreenPointToRay(screenCenter);
-            Debug.DrawRay(playerRay.origin, playerRay.direction * 10, Color.red);
-        }
+    // Draw ray from center of screen for debugging
+    if (pv.IsMine)
+    {
+        Ray playerRay = playerCamera.ScreenPointToRay(screenCenter);
+        Debug.DrawRay(playerRay.origin, playerRay.direction * 10, Color.red);
+    }
     // check if player belongs to client
     if (!pv.IsMine)
     {
@@ -78,7 +78,9 @@ public class Paint : MonoBehaviour
       if (Physics.Raycast(Ray, out hit, paintDistance))
       {
         blobExtrude = Vector3.up * 0.1f;
-
+        if(hit.transform.gameObject.tag == "startGame"){
+          MinigameManager.instance.StartGame();
+        }
         if (hit.transform.gameObject.tag == "wall_north")
         {
           blobExtrude = Vector3.forward * 0.1f;
