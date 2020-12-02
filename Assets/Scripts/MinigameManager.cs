@@ -91,7 +91,7 @@ public class MinigameManager : MonoBehaviourPun
 
     public IEnumerator MinigameTimer(){
         Debug.Log("starting timer");
-        yield return new WaitForSeconds(7f);
+        yield return new WaitForSeconds(30f);
         GetWinner();
     }
 
@@ -105,9 +105,12 @@ public class MinigameManager : MonoBehaviourPun
     public void GetWinner(){
         GameObject winner = GameObject.FindGameObjectWithTag("target");
         winner.GetComponent<PlayerAttributes>().NotTarget();
+        playerNum = GameObject.FindGameObjectsWithTag("Player");
+        foreach(GameObject p in playerNum){
+            p.GetComponent<PlayerAttributes>().NotTarget();
+        }
+        GameObject.FindGameObjectWithTag("mainPlayer").GetComponent<PlayerAttributes>().NotTarget();
         this.photonView.RPC("RPC_GameEnd", RpcTarget.All, winner.GetComponent<PhotonView>().Owner.NickName);
-    
-        
     }
     [PunRPC]
     private void RPC_UpdateTarget(string targetName){

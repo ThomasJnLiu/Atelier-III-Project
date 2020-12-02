@@ -83,7 +83,6 @@ public class Paint : MonoBehaviour
           MinigameManager.instance.StartGame(parentPlayer);
         }
         if(hit.transform.gameObject.tag == "target" && this.gameObject.tag != "target"){
-          Debug.Log("You hit the target!");
           MinigameManager.instance.UpdateTarget(parentPlayer);
           hit.transform.gameObject.GetComponent<PlayerAttributes>().NotTarget();
         }
