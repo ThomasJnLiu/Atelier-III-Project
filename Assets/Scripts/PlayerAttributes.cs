@@ -51,25 +51,27 @@ public class PlayerAttributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
-        if (Input.GetKeyDown(KeyCode.Alpha1) &&pv.IsMine)
-        {
-           pv.RPC("red", RpcTarget.AllBuffered);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2) && pv.IsMine)
-        {
-            pv.RPC("blue", RpcTarget.AllBuffered);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3) && pv.IsMine)
-        {
-            pv.RPC("yellow", RpcTarget.AllBuffered);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha4) && pv.IsMine)
-        {
-            pv.RPC("green", RpcTarget.AllBuffered);
+        // Prevent players from changing colour during minigame
+        if(!MinigameManager.instance.gameRunning){
+            if (Input.GetKeyDown(KeyCode.Alpha1) &&pv.IsMine)
+            {
+            pv.RPC("red", RpcTarget.AllBuffered);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha2) && pv.IsMine)
+            {
+                pv.RPC("blue", RpcTarget.AllBuffered);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha3) && pv.IsMine)
+            {
+                pv.RPC("yellow", RpcTarget.AllBuffered);
+            }
+            if (Input.GetKeyDown(KeyCode.Alpha4) && pv.IsMine)
+            {
+                pv.RPC("green", RpcTarget.AllBuffered);
 
+            }
         }
+
 
         
     }
