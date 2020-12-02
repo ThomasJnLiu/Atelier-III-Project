@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class PlayerMinigame : MonoBehaviour
+
+public class PlayerMinigame : MonoBehaviourPun
 {
     public GameObject minigameText;
     // Start is called before the first frame update
@@ -16,4 +19,6 @@ public class PlayerMinigame : MonoBehaviour
     {
         
     }
+
+
 }

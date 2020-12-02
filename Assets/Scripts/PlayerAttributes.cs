@@ -70,8 +70,19 @@ public class PlayerAttributes : MonoBehaviour
             pv.RPC("green", RpcTarget.AllBuffered);
 
         }
+
         
     }
+
+    public void BecomeTarget(){
+        pv.RPC("target", RpcTarget.AllBuffered);
+    }
+
+    public void NotTarget(){
+        pv.RPC("RPC_NotTarget", RpcTarget.AllBuffered);
+        pv.RPC("red", RpcTarget.AllBuffered);
+    }
+
     [PunRPC]
     public void red()
     {
@@ -120,5 +131,29 @@ public class PlayerAttributes : MonoBehaviour
             fill.color = new Color32(33, 226, 33, 255);
         }
 
+    }
+
+    [PunRPC]
+    public void target()
+    {
+        this.gameObject.tag = "target";
+        sprayModel.GetComponent<Renderer>().materials[1].color = sprayColor[4].color;
+        ParticleSystem.MainModule ma = paintParticle.main;
+        ma.startColor = sprayColor[3].color;
+        selectedColor = 3;
+
+        if(fill != null){
+            fill.color = new Color32(102, 51, 152, 255);
+        }
+
+    }
+
+    [PunRPC]
+    public void RPC_NotTarget(){
+        if(pv.IsMine){
+            this.gameObject.tag = "mainPlayer";
+        }else{        
+            this.gameObject.tag = "Player";
+        }
     }
 }

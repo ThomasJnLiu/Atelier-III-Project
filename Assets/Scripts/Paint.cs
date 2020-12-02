@@ -20,6 +20,7 @@ public class Paint : MonoBehaviour
   public Image outline;
 
   public GameObject undoText;
+  public GameObject parentPlayer;
   Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
 
     // Start is called before the first frame update
@@ -79,7 +80,12 @@ public class Paint : MonoBehaviour
       {
         blobExtrude = Vector3.up * 0.1f;
         if(hit.transform.gameObject.tag == "startGame"){
-          MinigameManager.instance.StartGame();
+          MinigameManager.instance.StartGame(parentPlayer);
+        }
+        if(hit.transform.gameObject.tag == "target" && this.gameObject.tag != "target"){
+          Debug.Log("You hit the target!");
+          MinigameManager.instance.UpdateTarget(parentPlayer);
+          hit.transform.gameObject.GetComponent<PlayerAttributes>().NotTarget();
         }
         if (hit.transform.gameObject.tag == "wall_north")
         {

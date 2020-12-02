@@ -17,7 +17,7 @@ public class Trampoline : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other){
-        if((other.gameObject.tag == "Player" || other.gameObject.tag == "mainPlayer") && other.relativeVelocity.magnitude > 2){
+        if((other.gameObject.tag == "Player" || other.gameObject.tag == "mainPlayer" || other.gameObject.tag == "target") && other.relativeVelocity.magnitude > 2){
             Debug.Log(other.relativeVelocity.magnitude);
             // Cap max velocity from trampoline at 18
             if(other.relativeVelocity.magnitude*1.5f < 18){

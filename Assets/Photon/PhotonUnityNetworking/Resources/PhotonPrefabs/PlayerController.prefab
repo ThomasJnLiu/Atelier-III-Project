@@ -1830,7 +1830,7 @@ GameObject:
   - component: {fileID: 6674358302208567361}
   m_Layer: 0
   m_Name: start text
-  m_TagString: Untagged
+  m_TagString: minigameText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7153,6 +7153,7 @@ MonoBehaviour:
   verticalLookRotation: 0
   grounded: 1
   nameTag: {fileID: 2895153966939013488}
+  minigameText: {fileID: 2895153966939013488}
   anim: {fileID: 2604917759865210601}
 --- !u!54 &1687304187159138248
 Rigidbody:
@@ -7201,13 +7202,14 @@ MonoBehaviour:
   Plane: {fileID: 0}
   pv: {fileID: 0}
   goList: []
-  paintDistance: 5
+  paintDistance: 2.5
   paintParticles: {fileID: 6054595466878123410, guid: be580ea6153eb294eb183680e3de01af, type: 3}
   sprayPoint: {fileID: 4160169371905582965}
   selectedColor: 0
   fill: {fileID: 4517895510515623312}
   outline: {fileID: 6485018155886008671}
   undoText: {fileID: 2097853782878021952}
+  parentPlayer: {fileID: 6556386135081858617}
 --- !u!114 &3264879882750062033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7227,6 +7229,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 48f02aed085b4484686b79d526c43a8d, type: 2}
   - {fileID: 2100000, guid: 4f51c0f3510788f4aad74da7f80c8db7, type: 2}
   - {fileID: 2100000, guid: 47ff2b15d407bb74c861c0bd9e98224d, type: 2}
+  - {fileID: 2100000, guid: 2017a9a500f21c844aa640412a4dd29e, type: 2}
   paintParticle: {fileID: 8259301637138328101}
   fill: {fileID: 4517895510515623312}
 --- !u!114 &4747956216587395702
@@ -7323,7 +7326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5df60d5fede0c7c4db0637a97b8e3186, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minigameText: {fileID: 0}
+  minigameText: {fileID: 6963177301703227777}
 --- !u!1 &6568179167963843521
 GameObject:
   m_ObjectHideFlags: 0

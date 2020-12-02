@@ -12,6 +12,8 @@ TagManager:
   - blob
   - mainPlayer
   - startGame
+  - minigameText
+  - target
   layers:
   - Default
   - TransparentFX

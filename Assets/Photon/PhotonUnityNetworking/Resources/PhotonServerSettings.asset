@@ -46,6 +46,15 @@ MonoBehaviour:
   - yellow
   - hideParticles
   - showParticles
+  - RPC_GameReady
+  - RPC_Target
+  - RPC_GameEnd
+  - RPC_GameStarted
+  - black
+  - target
+  - RPC_NotTarget
+  - RPC_UpdateTarget
+  - RPC_HideText
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

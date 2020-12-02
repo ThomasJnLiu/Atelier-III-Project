@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using Photon.Pun;
 using Photon.Realtime;
-
+using TMPro;
 
 
 public class MinigameManager : MonoBehaviourPun
@@ -14,6 +14,10 @@ public class MinigameManager : MonoBehaviourPun
     public List<GameObject> players = new List<GameObject>();
     public GameObject[] playerNum;
     public GameObject target;
+    public GameObject minigameText;
+    public TextMeshProUGUI text;
+    public PlayerAttributes targetAttributes;
+    PhotonView other;
     private void Awake()
     {
         if (instance == null)
@@ -36,28 +40,87 @@ public class MinigameManager : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        
+
+        PhotonView photonView = PhotonView.Get(this);
     }
 
     // Update is called once per frame
     void Update()
-    {
+    {        
+        if(minigameText == null){
+            minigameText = GameObject.FindGameObjectWithTag("minigameText");
+        }
+
+    }
+
+    public void StartGame(GameObject target){
+        if(gameRunning == false){
+            other = target.GetComponent<PhotonView>();
+            targetAttributes = target.GetComponent<PlayerAttributes>();
+            targetAttributes.BecomeTarget();
+
+            //players = GameObject.FindGameObjectsWithTag("Player").ToList();
+            // target = PhotonNetwork.PlayerList[0];
+            // Debug.Log(target);
+            gameRunning = true;
+            this.photonView.RPC("RPC_GameReady", RpcTarget.All, "game has been started! " + other.Owner.NickName + " is the target!");
+            StartCoroutine("MinigameTimer");
+        }
         
     }
 
-    public void StartGame(){
-        if(gameRunning == false){
-            players = GameObject.FindGameObjectsWithTag("Player").ToList();
-            players.Add(GameObject.FindGameObjectWithTag("mainPlayer"));
-            Debug.Log(PhotonNetwork.PlayerList[0]);
-            Debug.Log(PhotonNetwork.PlayerList[0].NickName);
-            Debug.Log(PhotonNetwork.CurrentRoom.PlayerCount);
-            // target = PhotonNetwork.PlayerList[0];
-            // Debug.Log(target);
-            
-            gameRunning = true;
-            Debug.Log("game starting");
-        }
+    [PunRPC]
+    private void RPC_GameReady(string message){
+        gameRunning = true;
+        minigameText.SetActive(true);
+        text = minigameText.GetComponent<TextMeshProUGUI>();
+        text.text = (message);
+        StartCoroutine("HideTextTimer");
+    }
+
+    [PunRPC]
+    private void RPC_GameEnd(string winnerName){
+        gameRunning = false;
+        Debug.Log("(RPC) game is ending...");
+        minigameText.SetActive(true);
+        text = minigameText.GetComponent<TextMeshProUGUI>();
+        text.text = (winnerName + " is the winner!");
+        StartCoroutine("HideTextTimer");
+
+    }
+
+    public IEnumerator MinigameTimer(){
+        Debug.Log("starting timer");
+        yield return new WaitForSeconds(7f);
+        GetWinner();
+    }
+
+    public void UpdateTarget(GameObject target){
+        other = target.GetComponent<PhotonView>();
+        targetAttributes = target.GetComponent<PlayerAttributes>();
+        targetAttributes.BecomeTarget();
+        this.photonView.RPC("RPC_UpdateTarget", RpcTarget.All, other.Owner.NickName);
+    }
+
+    public void GetWinner(){
+        GameObject winner = GameObject.FindGameObjectWithTag("target");
+        winner.GetComponent<PlayerAttributes>().NotTarget();
+        this.photonView.RPC("RPC_GameEnd", RpcTarget.All, winner.GetComponent<PhotonView>().Owner.NickName);
+    
         
+    }
+    [PunRPC]
+    private void RPC_UpdateTarget(string targetName){
+        Debug.Log(targetName + " is the new target!");
+    }
+
+    public IEnumerator HideTextTimer(){
+        yield return new WaitForSeconds(3f);
+        this.photonView.RPC("RPC_HideText", RpcTarget.All);
+    }
+
+    [PunRPC]
+    private void RPC_HideText(){
+        minigameText.SetActive(false);
     }
 }

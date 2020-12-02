@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
   [SerializeField] float verticalLookRotation;
   [SerializeField] bool grounded = true;
   [SerializeField] GameObject nameTag;
+  public GameObject minigameText;
+
 
   Vector3 smoothMoveVelocity;
   Vector3 moveAmount;
