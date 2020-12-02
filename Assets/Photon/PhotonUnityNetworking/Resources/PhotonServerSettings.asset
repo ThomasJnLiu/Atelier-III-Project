@@ -55,6 +55,7 @@ MonoBehaviour:
   - RPC_NotTarget
   - RPC_UpdateTarget
   - RPC_HideText
+  - RPC_UpdateTimer
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

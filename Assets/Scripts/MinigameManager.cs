@@ -16,6 +16,8 @@ public class MinigameManager : MonoBehaviourPun
     public GameObject target;
     public GameObject minigameText;
     public TextMeshProUGUI text;
+    public GameObject targetText;
+    public GameObject timerText;
     public PlayerAttributes targetAttributes;
     PhotonView other;
     private void Awake()
@@ -40,7 +42,6 @@ public class MinigameManager : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-
         PhotonView photonView = PhotonView.Get(this);
     }
 
@@ -50,7 +51,18 @@ public class MinigameManager : MonoBehaviourPun
         if(minigameText == null){
             minigameText = GameObject.FindGameObjectWithTag("minigameText");
         }
-
+        if(targetText == null){
+            targetText = GameObject.FindGameObjectWithTag("minigameText2");
+        }
+        if(timerText == null){
+            timerText = GameObject.FindGameObjectWithTag("minigameText3");
+        }
+        if(!gameRunning && targetText != null){
+            targetText.SetActive(false);
+        }
+        if(!gameRunning && timerText != null){
+            timerText.SetActive(false);
+        }
     }
 
     public void StartGame(GameObject target){
@@ -63,18 +75,21 @@ public class MinigameManager : MonoBehaviourPun
             // target = PhotonNetwork.PlayerList[0];
             // Debug.Log(target);
             gameRunning = true;
-            this.photonView.RPC("RPC_GameReady", RpcTarget.All, "game has been started! " + other.Owner.NickName + " is the target!");
+            this.photonView.RPC("RPC_GameReady", RpcTarget.All, other.Owner.NickName);
             StartCoroutine("MinigameTimer");
         }
         
     }
 
     [PunRPC]
-    private void RPC_GameReady(string message){
+    private void RPC_GameReady(string name){
         gameRunning = true;
         minigameText.SetActive(true);
         text = minigameText.GetComponent<TextMeshProUGUI>();
-        text.text = (message);
+        text.text = ("game has been started! " + name + " is the target!");
+        targetText.SetActive(true);
+        timerText.SetActive(true);
+        targetText.GetComponent<TextMeshProUGUI>().text = ("Target: "+ name);
         StartCoroutine("HideTextTimer");
     }
 
@@ -86,15 +101,25 @@ public class MinigameManager : MonoBehaviourPun
         text = minigameText.GetComponent<TextMeshProUGUI>();
         text.text = (winnerName + " is the winner!");
         StartCoroutine("HideTextTimer");
-
+        targetText.SetActive(false);
+        timerText.SetActive(false);
     }
 
     public IEnumerator MinigameTimer(){
         Debug.Log("starting timer");
-        yield return new WaitForSeconds(30f);
+        for(int i = 30; i >= 0; i--){
+            yield return new WaitForSeconds(1f);
+            timerText.GetComponent<TextMeshProUGUI>().text = ("Time: "+ i);
+            this.photonView.RPC("RPC_UpdateTimer", RpcTarget.All, i);
+
+        }
         GetWinner();
     }
 
+    [PunRPC]
+    private void RPC_UpdateTimer(int time){
+        timerText.GetComponent<TextMeshProUGUI>().text = ("Time: "+ time);
+    }
     public void UpdateTarget(GameObject target){
         other = target.GetComponent<PhotonView>();
         targetAttributes = target.GetComponent<PlayerAttributes>();
@@ -115,6 +140,7 @@ public class MinigameManager : MonoBehaviourPun
     [PunRPC]
     private void RPC_UpdateTarget(string targetName){
         Debug.Log(targetName + " is the new target!");
+        targetText.GetComponent<TextMeshProUGUI>().text = ("Target: "+ targetName);
     }
 
     public IEnumerator HideTextTimer(){
