@@ -11,7 +11,7 @@ public class DeathZone : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other){
-        if(other.gameObject.tag == "Player" || other.gameObject.tag == "mainPlayer"){
+        if(other.gameObject.tag == "Player" || other.gameObject.tag == "mainPlayer" || other.gameObject.tag == "target"){
             PlayerController pm = other.gameObject.GetComponent<PlayerController>();
             pm.RespawnPlayer();
             
