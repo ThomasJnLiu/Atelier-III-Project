@@ -107,7 +107,7 @@ public class MinigameManager : MonoBehaviourPun
 
     public IEnumerator MinigameTimer(){
         Debug.Log("starting timer");
-        for(int i = 30; i >= 0; i--){
+        for(int i = 90; i >= 0; i--){
             yield return new WaitForSeconds(1f);
             timerText.GetComponent<TextMeshProUGUI>().text = ("Time: "+ i);
             this.photonView.RPC("RPC_UpdateTimer", RpcTarget.All, i);
